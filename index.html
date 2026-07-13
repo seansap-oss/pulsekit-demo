@@ -1,65 +1,202 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-50">
+<html lang="en" class="h-full bg-[#FAF9F6]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseKit - Operational Multi-Tenant System</title>
+  <title>PulseKit - Executive Command Suite</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="p-4 md:p-8 space-y-12 max-w-7xl mx-auto text-slate-800">
+<body class="p-4 md:p-8 space-y-12 max-w-7xl mx-auto font-sans antialiased text-[#2C3E35]">
 
-  <!-- ================= TOP DEMO SIMULATOR SWAP BAR ================= -->
-  <div class="bg-blue-600 rounded-xl p-4 text-white shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+  <!-- ================= MASTER CONTROLLER SWAP STRIP ================= -->
+  <div class="bg-[#2C3E35] rounded-xl p-4 text-[#F4F1EA] shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
     <div>
-      <h1 class="text-lg font-bold">PulseKit Master Enterprise Core</h1>
-      <p class="text-xs text-blue-100">Click links below to test dynamic multi-tenant constituency configuration rendering:</p>
+      <h1 class="text-lg font-medium tracking-tight">PulseKit SaaS Master Core</h1>
+      <p class="text-xs text-[#A3B899]">Switch constituency contexts to preview multi-tenant data rendering frameworks:</p>
     </div>
-    <div class="flex gap-2 bg-black/20 p-1.5 rounded-lg border border-white/10">
-      <button onclick="switchAC('thangmeiband')" class="bg-blue-700 px-3 py-1 rounded text-xs font-bold hover:bg-blue-800 transition">Test Thangmeiband (25 Wards)</button>
-      <button onclick="switchAC('uripok')" class="bg-green-700 px-3 py-1 rounded text-xs font-bold hover:bg-green-800 transition">Test Uripok (20 Wards)</button>
+    <div class="flex gap-2">
+      <button onclick="switchAC('thangmeiband')" class="bg-[#4A6B56] px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-[#5C836C] transition shadow-sm">Thangmeiband AC (25 Wards)</button>
+      <button onclick="switchAC('uripok')" class="bg-[#6B8E78] px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-[#7D9F8A] transition shadow-sm">Uripok AC (20 Wards)</button>
     </div>
   </div>
 
-  <!-- ================= VIEWPORT 1: CITIZEN PWA ================= -->
-  <section id="citizen-section">
-    <div class="mx-auto max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
-      <div class="bg-blue-900 px-6 py-4 flex items-center justify-between">
-        <div class="text-white font-bold text-lg" id="brand-title">Constituency Pulse</div>
+  <!-- ================= TIER 3: CITIZEN PORTAL (MOBILE PWAs LAYER) ================= -->
+  <section id="citizen-section" class="max-w-md mx-auto">
+    <div class="bg-white rounded-2xl shadow-sm border border-[#E2E8F0] overflow-hidden">
+      <div class="bg-[#2C3E35] px-6 py-4 flex items-center justify-between">
+        <h2 id="brand-title" class="text-[#F4F1EA] font-medium tracking-wide">Constituency Pulse</h2>
+        <span class="bg-[#E4EFE9] text-[#2C3E35] text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-[#C5DCD0]">? SECURE</span>
       </div>
-      <div class="p-5 space-y-4">
-        <h3 class="font-bold text-xl">Welcome back, Rajesh Kumar</h3>
-        <div class="rounded-xl border border-slate-200 p-4 space-y-2 bg-slate-50">
-          <h5 class="font-bold text-sm">?? Clean Water Pipeline Retrofit</h5>
-          <div class="flex justify-between items-center text-xs pt-2">
-            <span>?? <span id="water-count">4821</span> Aligned</span>
-            <button onclick="agree('water', this)" class="bg-blue-600 text-white font-bold px-3 py-1 rounded">[ I Agree ]</button>
+      
+      <div class="p-6 space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold tracking-tight">Welcome back, Rajesh Kumar</h3>
+          <p class="text-xs text-slate-500 mt-1">Verify identity to lock consensus tokens across active infrastructure agendas.</p>
+        </div>
+
+        <!-- STAGE 3: BOT VERIFICATION INTERFACE MODULE -->
+        <div class="bg-[#FAF9F6] border border-[#E2E8F0] p-4 rounded-xl space-y-3">
+          <label class="block text-xs font-medium uppercase tracking-wider text-slate-600">Voter WhatsApp Authentication Gate</label>
+          <div class="flex gap-2">
+            <input type="text" id="voter-phone" placeholder="Enter Registered Mobile" class="bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs w-full focus:outline-none focus:ring-1 focus:ring-[#2C3E35]">
+            <button onclick="requestOTP()" class="bg-[#2C3E35] hover:bg-[#3D5447] text-[#F4F1EA] text-xs px-3 rounded-lg font-medium whitespace-nowrap transition">Send OTP</button>
+          </div>
+          <div id="otp-verify-box" class="hidden flex gap-2 pt-1 animate-fadeIn">
+            <input type="text" id="voter-otp" placeholder="Enter 6-Digit OTP" class="bg-white border border-slate-200 rounded-lg px-3 py-2 text-xs w-full focus:outline-none">
+            <button onclick="verifyVoterToken()" class="bg-green-700 hover:bg-green-800 text-white text-xs px-3 rounded-lg font-medium transition">Verify</button>
           </div>
         </div>
-        <div class="bg-slate-50 rounded-xl p-4 border text-xs space-y-2">
-          <div class="flex justify-between font-bold"><span>?? Household Cluster Multiplier</span><span id="house-count">3 Members</span></div>
-          <input type="text" id="new-name" placeholder="Relative Name" class="w-full p-2 border rounded">
-          <button onclick="addFamily()" class="w-full bg-slate-800 text-white py-1 rounded">+ Add Relative</button>
+
+        <!-- AGENDA CARDS CLUSTER -->
+        <div id="agenda-wrapper" class="space-y-3 opacity-50 pointer-events-none transition-all duration-300">
+          <div class="border border-[#E2E8F0] rounded-xl p-4 bg-[#FAF9F6]/50 space-y-3">
+            <h5 class="font-medium text-sm flex items-center gap-2"><span>??</span> Clean Water Pipeline Retrofit</h5>
+            <div class="flex justify-between items-center pt-2 border-t border-slate-100 text-xs">
+              <span class="text-slate-500">?? <span id="water-count" class="font-bold text-slate-800">4821</span> Aligned</span>
+              <button onclick="agree('water', this)" class="bg-[#2C3E35] text-[#F4F1EA] px-4 py-1.5 rounded-lg font-medium text-xs hover:bg-[#3D5447] transition shadow-sm">[ I Agree ]</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- HOUSEHOLD CLUSTER MODULE -->
+        <div class="border border-[#E2E8F0] p-4 rounded-xl space-y-4">
+          <div class="flex justify-between items-center">
+            <h4 class="font-semibold text-sm">?? Household Members Array</h4>
+            <span id="house-count" class="bg-slate-100 px-2 py-0.5 rounded text-xs font-bold">3 Members</span>
+          </div>
+          <div id="family-roster-list" class="text-xs space-y-2">
+            <div class="bg-[#FAF9F6] p-2 rounded border border-slate-100 flex justify-between"><span>? L. Ibomcha Singh (Father)</span><span class="text-slate-400">Age 62</span></div>
+          </div>
+          <div class="pt-2 border-t border-slate-100 space-y-2">
+            <input type="text" id="new-name" placeholder="Relative's Full Name" class="w-full p-2 border border-slate-200 rounded-lg text-xs focus:outline-none">
+            <button onclick="addFamily()" class="w-full bg-slate-800 text-white py-2 rounded-lg text-xs font-medium hover:bg-slate-900 transition">+ Add Relative to Registry</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ================= VIEWPORT 2: AGENT OPERATIONS ================= -->
-  <section id="agent-section" class="mx-auto max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100 p-5 space-y-4">
-    <h3 class="font-bold text-lg border-b pb-2">?? Agent Operations Cockpit</h3>
-    <div class="text-xs space-y-1">
-      <div>? Logistics Spent: <span id="spent-logistics">?3,200</span> / ?5,000</div>
-      <div>?? Food Outlays: <span id="spent-food">?1,800</span> / ?3,000</div>
+  <!-- ================= TIER 2: L2 FIELD AGENT COCKPIT PANEL ================= -->
+  <section id="agent-section" class="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#E2E8F0] overflow-hidden">
+    <div class="bg-slate-900 px-6 py-4">
+      <h2 class="text-white font-medium text-base tracking-wide">Agent Cockpit Workspaces</h2>
+      <p class="text-slate-400 text-xs mt-0.5">Active Agent ID: Tomba • Ward 3 Matrix Allocation</p>
     </div>
-    <input type="number" id="exp-amt" placeholder="Amount (?)" class="w-full p-2 border rounded text-xs">
-    <button onclick="fileExpense()" class="w-full bg-slate-800 text-white py-1.5 rounded text-xs font-bold">File Field Expense</button>
+    
+    <div class="p-6 space-y-6">
+      <div class="bg-[#FAF9F6] p-4 rounded-xl border border-slate-100">
+        <div class="flex justify-between text-xs mb-1.5 font-medium">
+          <span class="text-slate-500">Target Progress Data</span>
+          <span class="text-slate-900 font-bold">310 / 500 Voters (62%)</span>
+        </div>
+        <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+          <div class="bg-[#2C3E35] h-2 rounded-full" style="width: 62%"></div>
+        </div>
+      </div>
+
+      <!-- EXPENDITURES ACCOUNTING LEDGER INTERFACE -->
+      <div class="border border-[#E2E8F0] p-4 rounded-xl space-y-3">
+        <h4 class="font-semibold text-sm flex items-center gap-1.5"><span>??</span> Wallet Expense Matrix</h4>
+        <div class="text-xs space-y-2">
+          <div class="flex justify-between p-2 bg-slate-50 rounded-lg">
+            <span class="text-slate-500">? Logistics & Fuel Transit:</span>
+            <span class="font-bold text-slate-800"><span id="spent-logistics">?3,200</span> / ?5,000</span>
+          </div>
+          <div class="flex justify-between p-2 bg-slate-50 rounded-lg">
+            <span class="text-slate-500">?? Food Outlays & Team Rations:</span>
+            <span class="font-bold text-slate-800"><span id="spent-food">?1,800</span> / ?3,000</span>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-slate-100 space-y-2">
+          <input type="number" id="exp-amt" placeholder="Enter Outlay Amount (?)" class="w-full p-2 border border-slate-200 rounded-lg text-xs focus:outline-none">
+          <button onclick="fileExpense()" class="w-full bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-black transition shadow-sm">File Field Expense</button>
+        </div>
+      </div>
+
+      <!-- STAGE 4: MULTI-MEDIA HARDWARE INTELLIGENCE LAYER -->
+      <div class="border border-[#E2E8F0] p-4 rounded-xl space-y-3">
+        <h4 class="font-semibold text-sm flex items-center gap-1.5"><span>??</span> Telemetry Diagnostic Media Capture</h4>
+        <input type="text" id="incident-comment" placeholder="Describe neighborhood emergency infrastructure..." class="w-full p-2 border border-slate-200 rounded-lg text-xs focus:outline-none">
+        <div class="grid grid-cols-2 gap-2">
+          <label class="bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs py-2 rounded-lg font-medium text-center cursor-pointer border border-slate-300 transition">
+            ?? Open Camera
+            <input type="file" accept="image/*" capture="environment" class="hidden" onchange="captureMedia('Photo')">
+          </label>
+          <label class="bg-slate-100 text-slate-700 hover:bg-slate-200 text-xs py-2 rounded-lg font-medium text-center cursor-pointer border border-slate-300 transition">
+            ??? Record Voice
+            <input type="file" accept="audio/*" capture="microphone" class="hidden" onchange="captureMedia('Audio')">
+          </label>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- ================= VIEWPORT 3: WAR ROOM MATRIX ================= -->
-  <section id="warroom-section" class="bg-slate-950 text-slate-100 rounded-2xl p-6 space-y-4">
-    <h2 class="text-xl font-black" id="scope-text">War Room Matrix</h2>
-    <div id="ward-grid-container" class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs"></div>
-    <div id="telemetry-stream" class="bg-slate-900 p-3 rounded text-[11px] font-mono text-slate-400 max-h-30 overflow-y-auto"></div>
+  <!-- ================= TIER 1: COMMAND WAR ROOM VIEWPORTS (4 CHARTS DASHBOARD) ================= -->
+  <section id="warroom-section" class="bg-slate-950 text-slate-100 rounded-2xl p-6 md:p-8 space-y-8 border border-slate-900 shadow-xl">
+    <div class="flex flex-col md:flex-row md:items-center justify-between border-b border-slate-800 pb-6 gap-4">
+      <div>
+        <h2 class="text-2xl font-black tracking-tight text-white" id="scope-text">PulseKit War Room Control</h2>
+        <p class="text-xs text-slate-400 mt-1">Four-Chart Executive Summary Map Matrix Profile Layer</p>
+      </div>
+      <div class="flex gap-4 text-center">
+        <div class="bg-slate-900 px-4 py-2 rounded-xl border border-slate-800 min-w-[140px]">
+          <div class="text-2xl font-bold text-blue-400" id="master-total-voters">2100</div>
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-bold mt-0.5">Voters Logged</div>
+        </div>
+        <div class="bg-slate-900 px-4 py-2 rounded-xl border border-slate-800 min-w-[140px]">
+          <div class="text-2xl font-bold text-green-400" id="master-total-spent">?5,000</div>
+          <div class="text-[10px] uppercase tracking-wider text-slate-500 font-bold mt-0.5">Total Outflow</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= THE FOUR EXECUTIVE ANALYTICS CHARTS ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- CHART 1: INGESTION TREND LINE METRIC MOCK -->
+      <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 1: Ingestion Timelines Velocity</h4>
+        <div class="h-32 flex items-end justify-between pt-4 border-b border-l border-slate-800 px-2 gap-1">
+          <div class="w-full bg-blue-500/20 h-[30%] rounded-t transition-all hover:bg-blue-500" title="Week 1"></div>
+          <div class="w-full bg-blue-500/40 h-[45%] rounded-t transition-all hover:bg-blue-500" title="Week 2"></div>
+          <div class="w-full bg-blue-500/60 h-[70%] rounded-t transition-all hover:bg-blue-500" title="Week 3"></div>
+          <div id="trend-live-bar" class="w-full bg-blue-500 h-[88%] rounded-t transition-all duration-500" title="Live Dynamic Track"></div>
+        </div>
+        <div class="flex justify-between text-[9px] text-slate-500 font-mono"><span>WK 1</span><span>WK 2</span><span>WK 3</span><span>LIVE TRACK</span></div>
+      </div>
+
+      <!-- CHART 2: EXPENSES DISBURSEMENT ALLOCATION PROGRESS PIE METRIC -->
+      <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 2: Operational Wallet Share Structure</h4>
+        <div class="space-y-2 pt-2">
+          <div class="text-xs">
+            <div class="flex justify-between mb-1"><span>? Logistics & Fleet Allocation</span><span id="pct-logistics">64%</span></div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div id="bar-logistics" class="bg-yellow-500 h-2 rounded-full" style="width: 64%"></div></div>
+          </div>
+          <div class="text-xs">
+            <div class="flex justify-between mb-1"><span>?? Food Provisions</span><span id="pct-food">36%</span></div>
+            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div id="bar-food" class="bg-orange-500 h-2 rounded-full" style="width: 36%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHART 3: PERFORMANCE SEGMENT HEATMAP HEATGRID (25-WARDS SHIFT GRID) -->
+      <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3 lg:col-span-2">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 3: Context Ward Structural Density Performance Heatmap</h4>
+        <div id="ward-grid-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 text-xs">
+          <!-- Populated dynamically via engine loop scripts -->
+        </div>
+      </div>
+
+      <!-- CHART 4: TELEMETRY DIAGNOSTIC STREAMS LEDGER REALTIME TICKER -->
+      <div class="bg-slate-900 p-5 rounded-xl border border-slate-800 space-y-3 lg:col-span-2">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 4: Ground Telemetry Stream Diagnostic Traces</h4>
+        <div id="telemetry-stream" class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs font-mono text-slate-400 max-h-40 overflow-y-auto space-y-2">
+          <div>[09:42:15 AM] - <span class="text-emerald-400">SYSTEM PROFILE</span>: Ready. Waiting initialization commands.</div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <script src="app.js"></script>
