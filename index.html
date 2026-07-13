@@ -1,149 +1,154 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-[#FAF9F6]">
+<html lang="en" class="h-full bg-[#FAF9F5]">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseKit - Complete Campaign Command Suite</title>
+  <title>PulseKit - Multi-Tenant Campaign Engine</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .active-view { display: block !important; }
-    .nav-active { border-top: 3px solid #2C3E35; color: #2C3E35 !important; font-weight: 700; }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+    .nav-btn.active { color: #2C3E35; border-top: 3px solid #2C3E35; font-weight: 600; }
   </style>
 </head>
-<body class="bg-[#FAF9F6] text-[#2C3E35] font-sans pb-24 antialiased">
+<body class="bg-[#FAF9F5] text-[#2C3E35] font-sans antialiased min-h-full pb-24">
 
-  <!-- ================= TOP DYNAMIC MULTI-TENANT SWITCHER ================= -->
-  <header class="bg-[#2C3E35] text-[#F4F1EA] p-4 shadow-sm sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+  <!-- ================= MASTER SAAS NAVIGATION HEADER ================= -->
+  <header class="bg-[#2C3E35] text-[#F4F1EA] px-6 py-4 shadow-sm border-b border-[#3D5247] sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div>
-        <h1 id="main-title" class="text-xl font-semibold tracking-tight">PulseKit Enterprise Command</h1>
-        <p id="sub-title" class="text-xs text-[#A3B899]">Active Target: Thangmeiband AC Core Engine</p>
+        <h1 class="text-xl font-light tracking-wide">PULSE<span class="font-normal text-[#A3B899]">KIT</span></h1>
+        <p id="current-ac-label" class="text-[11px] text-[#A3B899] uppercase tracking-wider mt-0.5">Loading Active Constituency Framework...</p>
       </div>
-      <div class="flex gap-2">
-        <button onclick="switchAC('thangmeiband')" class="bg-[#4A6B56] hover:bg-[#5C836C] px-3 py-1.5 rounded-lg text-xs transition">Thangmeiband AC (25 Wards)</button>
-        <button onclick="switchAC('uripok')" class="bg-[#6B8E78] hover:bg-[#7D9F8A] px-3 py-1.5 rounded-lg text-xs transition">Uripok AC (20 Wards)</button>
+      <!-- Multi-Tenant Router Switches -->
+      <div class="flex gap-2 text-xs">
+        <button onclick="router.navigateAC('thangmeiband')" class="bg-[#4A6B56] hover:bg-[#5C836C] text-[#F4F1EA] px-4 py-2 rounded-lg transition shadow-sm">Thangmeiband AC (25 Wards)</button>
+        <button onclick="router.navigateAC('uripok')" class="bg-[#6B8E78] hover:bg-[#7D9F8A] text-[#F4F1EA] px-4 py-2 rounded-lg transition shadow-sm">Uripok AC (20 Wards)</button>
       </div>
     </div>
   </header>
 
-  <main class="max-w-7xl mx-auto p-4 md:p-8 space-y-8">
+  <main class="max-w-7xl mx-auto p-4 md:p-8">
 
     <!-- ================================================================= -->
-    <!-- VIEWPORT 1: CITIZEN PORTAL FRAMEWORK                             -->
+    <!-- VIEWPORT 1: TIER 3 CITIZEN MOBILE PWA FRAMEWORK                   -->
     <!-- ================================================================= -->
-    <div id="view-citizen" class="hidden max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#E2E8F0] overflow-hidden active-view">
-      <div class="bg-[#2C3E35] p-4 flex justify-between items-center">
-        <span class="text-[#F4F1EA] font-medium text-sm">Citizen Portal Gateway</span>
-        <span class="bg-[#E4EFE9] text-[#2C3E35] text-[10px] font-bold px-2 py-0.5 rounded border border-[#C5DCD0]">WhatsApp Secured</span>
+    <div id="panel-citizen" class="view-panel active max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#EBE7DF] overflow-hidden">
+      <div class="bg-[#2C3E35] px-6 py-4 flex justify-between items-center">
+        <h3 class="text-[#F4F1EA] font-medium tracking-tight text-sm">Voter Portal Gateway</h3>
+        <span id="auth-status-tag" class="bg-[#EAE6DF] text-[#2C3E35] text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full border border-[#D5D0C5]">LOCKED</span>
       </div>
-      
+
       <div class="p-6 space-y-6">
         <div>
-          <h3 class="text-lg font-bold">Welcome back, Rajesh Kumar</h3>
-          <p class="text-xs text-slate-500">Authenticate through your WhatsApp link to verify household registry weight.</p>
+          <h2 class="text-xl font-semibold tracking-tight text-[#2C3E35]">Welcome, Rajesh Kumar</h2>
+          <p class="text-xs text-slate-500 mt-1">Pass the automated handshake step to verify your profile against the constituency registry.</p>
         </div>
 
-        <!-- WHATSAPP INTERACTIVE LINK AUTHENTICATION HUB -->
-        <div class="bg-[#FAF9F6] border border-[#E2E8F0] p-4 rounded-xl space-y-3">
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">WhatsApp Handshake Authentication</label>
+        <!-- WHATSAPP WEBHOOK DATA ROUTER GENERATOR -->
+        <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl space-y-3">
+          <label class="block text-xs font-semibold uppercase tracking-wider text-[#5A6E63]">WhatsApp Mobile Identity Ingestion</label>
           <div class="flex gap-2">
-            <input type="text" id="citizen-phone" placeholder="Enter WhatsApp Number" class="w-full bg-white p-2 border border-slate-200 rounded-lg text-xs focus:outline-none">
-            <button onclick="simulateWhatsAppLink()" class="bg-[#2C3E35] hover:bg-[#3D5447] text-[#F4F1EA] text-xs px-3 rounded-lg transition font-medium">Send Link</button>
+            <input type="text" id="voter-phone-input" placeholder="Enter Mobile Number" class="w-full bg-white border border-[#D5D0C5] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#2C3E35]">
+            <button onclick="voterAuth.triggerMetaWebhook()" class="bg-[#2C3E35] hover:bg-[#3E5448] text-[#F4F1EA] text-xs px-4 rounded-xl font-medium transition shadow-sm whitespace-nowrap">Verify Mobile</button>
           </div>
-          <div id="auth-success-badge" class="hidden text-[11px] text-emerald-700 font-medium bg-emerald-50 p-2 rounded-lg border border-emerald-200">
-            ? Connected via WhatsApp Link. Household footprint verified against master voter list data.
+          <div id="meta-webhook-alert" class="hidden text-[11px] bg-[#E4EFE9] text-[#2C3E35] p-3 rounded-xl border border-[#C5DCD0] leading-relaxed">
+            <strong>Inbound Verification Token Dispatched:</strong> Check your WhatsApp profile for the validation URL handshake key.
           </div>
         </div>
 
-        <!-- DYNAMIC VOTING STRUCTURE -->
-        <div id="voter-action-wrapper" class="space-y-3 opacity-40 pointer-events-none transition-all duration-300">
-          <div class="border border-[#E2E8F0] p-4 bg-[#FAF9F6] rounded-xl space-y-2">
-            <h5 class="font-medium text-sm">Clean Water Mainline Pipeline Retrofit</h5>
-            <div class="flex justify-between items-center text-xs pt-1">
-              <span class="text-slate-500">Votes Aligned: <span id="water-count" class="font-bold text-slate-900">4821</span></span>
-              <button onclick="logConsensus('water', this)" class="bg-[#2C3E35] text-white px-3 py-1 rounded-md font-medium">[ I Agree ]</button>
+        <!-- DYNAMIC ALIGNED CARDS LAYER -->
+        <div id="citizen-agenda-box" class="space-y-3 opacity-40 pointer-events-none transition-all duration-300">
+          <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl space-y-3">
+            <h4 class="font-medium text-sm flex items-center gap-2">?? Clean Water Pipeline Retrofit</h4>
+            <div class="flex justify-between items-center pt-2 border-t border-[#EBE7DF] text-xs">
+              <span class="text-slate-500">Active Weight: <span id="water-tally-val" class="font-bold text-[#2C3E35]">4821</span> Tokens</span>
+              <button onclick="voterAuth.submitConsensus('water', this)" class="bg-[#2C3E35] text-[#F4F1EA] hover:bg-[#3E5448] font-medium px-4 py-1.5 rounded-lg transition shadow-sm">[ I Agree ]</button>
             </div>
           </div>
         </div>
 
-        <!-- HOUSEHOLD MULTIPLIER REGISTRY MODULE -->
-        <div class="border border-[#E2E8F0] p-4 rounded-xl space-y-3">
-          <div class="flex justify-between items-center">
-            <h4 class="font-bold text-sm">Household Members Roster</h4>
-            <span id="house-count-badge" class="bg-slate-100 text-xs font-bold px-2 py-0.5 rounded">3 Voters Registered</span>
+        <!-- HOUSEHOLD CLUSTER ARRAYS MULTIPLIER -->
+        <div class="bg-white border border-[#EBE7DF] p-4 rounded-xl space-y-4">
+          <div class="flex justify-between items-center border-b border-[#FAF9F5] pb-2">
+            <h4 class="font-semibold text-sm">Household Dependency Matrix</h4>
+            <span id="household-size-badge" class="bg-[#FAF9F5] border border-[#EBE7DF] text-[11px] font-bold px-2.5 py-0.5 rounded-md text-[#2C3E35]">3 Voters Tracked</span>
           </div>
-          <div id="roster-list" class="text-xs space-y-2">
-            <div class="bg-slate-50 p-2 rounded border flex justify-between"><span>? L. Ibomcha Singh (Father)</span><span class="text-slate-400">Age 62</span></div>
+          <div id="household-roster-dom" class="text-xs space-y-2 max-h-32 overflow-y-auto">
+            <div class="bg-[#FAF9F5] p-2.5 rounded-lg border border-[#FAF9F5] flex justify-between items-center"><span>? L. Ibomcha Singh (Father)</span><span class="text-slate-400 font-mono text-[11px]">Age 62</span></div>
           </div>
-          <div class="pt-2 space-y-2 border-t">
-            <input type="text" id="new-member-name" placeholder="Relative Name" class="w-full p-2 border rounded-lg text-xs focus:outline-none">
-            <button onclick="registerHouseholdRelative()" class="w-full bg-slate-800 text-white py-2 rounded-lg text-xs font-medium hover:bg-slate-900 transition">+ Append Member to House Link</button>
+          <div class="pt-2 border-t border-[#FAF9F5] space-y-2">
+            <input type="text" id="relative-name-input" placeholder="Relative's Full Name" class="w-full bg-[#FAF9F5] border border-[#EBE7DF] rounded-lg px-3 py-2 text-xs focus:outline-none">
+            <button onclick="voterAuth.appendRelative()" class="w-full bg-[#2C3E35] hover:bg-[#3E5448] text-[#F4F1EA] py-2 rounded-lg text-xs font-medium transition shadow-sm">+ Append Relative Node</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ================================================================= -->
-    <!-- VIEWPORT 2: FIELD AGENT MANAGEMENT COCKPIT                       -->
+    <!-- VIEWPORT 2: TIER 2 L2 FIELD AGENT OPERATIONS APP                  -->
     <!-- ================================================================= -->
-    <div id="view-agent" class="hidden max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#E2E8F0] overflow-hidden">
-      <div class="bg-slate-900 p-4 text-white">
-        <h2 class="text-base font-medium">L2 Field Agent Cockpit Operations</h2>
-        <p class="text-xs text-slate-400">Assigned Agent Profile: Agent Tomba (Ward 3 Scope)</p>
+    <div id="panel-agent" class="view-panel max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#EBE7DF] overflow-hidden">
+      <div class="bg-slate-900 px-6 py-4 text-white flex justify-between items-center">
+        <div>
+          <h2 id="agent-profile-title" class="text-base font-medium tracking-wide">Agent Cockpit</h2>
+          <p id="agent-ward-subtitle" class="text-xs text-slate-400 mt-0.5">Parsing Identifier Badge Parameters...</p>
+        </div>
+        <span class="bg-blue-950 text-blue-400 text-[10px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full border border-blue-900">L2 Auth</span>
       </div>
 
       <div class="p-6 space-y-6">
-        <!-- HARD VOTER TARGET METRIC CAPACITY -->
-        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2">
-          <div class="flex justify-between text-xs font-medium">
-            <span class="text-slate-500">My Target Track Status (500 Quota)</span>
-            <span class="text-slate-900 font-bold"><span id="agent-quota-val">310</span> / 500 Voters</span>
+        <!-- HARD QR INTERACTIVE SCANNER GATE MODULE -->
+        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-3">
+          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Hardware QR ID Authentication Scanner</label>
+          <button onclick="agentOps.triggerQRScannerMock()" class="w-full border-2 border-dashed border-slate-300 hover:border-slate-400 p-6 rounded-xl flex flex-col items-center justify-center gap-1.5 transition text-slate-500">
+            <span class="text-xl">??</span>
+            <span class="text-xs font-semibold">Scan Clipboard Badge Token</span>
+          </button>
+        </div>
+
+        <!-- 500-VOTER CAPACITATION TARGET PROGRESS -->
+        <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl space-y-2">
+          <div class="flex justify-between items-center text-xs font-medium">
+            <span class="text-slate-500">Agent Quota Footprint Target</span>
+            <span id="agent-quota-label" class="text-[#2C3E35] font-bold font-mono">0 / 500 Voters (0%)</span>
           </div>
-          <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-            <div id="agent-quota-bar" class="bg-blue-600 h-2.5 rounded-full transition-all duration-500" style="width: 62%"></div>
+          <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+            <div id="agent-quota-progress-fill" class="bg-[#2C3E35] h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
           </div>
         </div>
 
-        <!-- EXPENDITURES ACCOUNTS GENERAL LEDGER PANEL -->
-        <div class="border border-[#E2E8F0] p-4 rounded-xl space-y-3">
-          <h4 class="font-bold text-sm flex items-center gap-1">Financial Operational Logs</h4>
+        <!-- ACCOUNTING CASH GENERAL LEDGER INPUT LAYER -->
+        <div class="border border-[#EBE7DF] p-4 rounded-xl space-y-3">
+          <h4 class="font-bold text-sm text-[#2C3E35] flex items-center gap-1.5">Campaign Financial Voucher Entry</h4>
           <div class="text-xs space-y-2">
-            <div class="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>? Vehicle Fuel & Logistics Outlays:</span>
-              <span class="font-bold" id="agent-log-cost">?3,200</span>
-            </div>
-            <div class="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>?? Team Food Provisions & Rations:</span>
-              <span class="font-bold" id="agent-food-cost">?1,800</span>
-            </div>
-            <div class="flex justify-between p-2 bg-slate-50 rounded-lg">
-              <span>?? Campaign Materials / Print:</span>
-              <span class="font-bold" id="agent-camp-cost">?2,500</span>
-            </div>
+            <div class="flex justify-between p-2.5 bg-[#FAF9F5] rounded-lg"><span>? Fleet Transport & Vehicle Fuel:</span><span id="ag-cost-logistics" class="font-bold text-slate-800">?0</span></div>
+            <div class="flex justify-between p-2.5 bg-[#FAF9F5] rounded-lg"><span>?? Ground Worker Provisions & Rations:</span><span id="ag-cost-food" class="font-bold text-slate-800">?0</span></div>
+            <div class="flex justify-between p-2.5 bg-[#FAF9F5] rounded-lg"><span>?? Campaign Print & Collateral Materials:</span><span id="ag-cost-campaign" class="font-bold text-slate-800">?0</span></div>
           </div>
-          <div class="pt-2 border-t space-y-2">
-            <select id="expense-type" class="w-full p-2 border rounded-lg text-xs focus:outline-none">
-              <option value="logistics">Vehicle Fuel & Logistics</option>
-              <option value="food">Team Food Provisions</option>
-              <option value="campaign">Campaign Materials</option>
+          <div class="pt-2 border-t border-[#FAF9F5] space-y-2">
+            <select id="agent-expense-category" class="w-full p-2 bg-white border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
+              <option value="logistics">Fleet Transport & Vehicle Fuel</option>
+              <option value="food">Ground Worker Provisions</option>
+              <option value="campaign">Campaign Print Collateral</option>
             </select>
-            <input type="number" id="expense-amount" placeholder="Enter Cost Amount (?)" class="w-full p-2 border rounded-lg text-xs focus:outline-none">
-            <button onclick="submitAgentExpense()" class="w-full bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-black transition">File Voucher Entry</button>
+            <input type="number" id="agent-expense-amount" placeholder="Enter Cost Voucher (?)" class="w-full p-2 border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
+            <button onclick="agentOps.fileExpenseVoucher()" class="w-full bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-black transition shadow-sm">File Cost Voucher</button>
           </div>
         </div>
 
-        <!-- CAMERA AUDIO TELEMETRY CAPTURES -->
-        <div class="border border-[#E2E8F0] p-4 rounded-xl space-y-3">
-          <h4 class="font-bold text-sm">Ground Telemetry Alert Generation</h4>
-          <input type="text" id="telemetry-msg" placeholder="Describe emergency issue..." class="w-full p-2 border rounded-lg text-xs focus:outline-none">
-          <div class="grid grid-cols-2 gap-2">
-            <label class="bg-slate-100 border text-center text-xs py-2 rounded-lg font-medium cursor-pointer hover:bg-slate-200">
-              ?? Open Camera
-              <input type="file" accept="image/*" capture="environment" class="hidden" onchange="fireMediaLog('Photo')">
+        <!-- INCIDENT MULTI-MEDIA UPLOAD GATE -->
+        <div class="border border-[#EBE7DF] p-4 rounded-xl space-y-3">
+          <h4 class="font-bold text-sm text-[#2C3E35]">Telemetry Field Incident Registry</h4>
+          <input type="text" id="agent-media-comment" placeholder="Describe emergency broken infrastructure..." class="w-full p-2 border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
+          <div class="grid grid-cols-2 gap-2 text-xs font-medium">
+            <label class="bg-slate-100 border text-center py-2 rounded-lg cursor-pointer hover:bg-slate-200 transition">
+              ?? Capture Image
+              <input type="file" accept="image/*" capture="environment" class="hidden" onchange="agentOps.uploadTelemetryMedia('Image')">
             </label>
-            <label class="bg-slate-100 border text-center text-xs py-2 rounded-lg font-medium cursor-pointer hover:bg-slate-200">
-              ??? Record Voice
-              <input type="file" accept="audio/*" capture="microphone" class="hidden" onchange="fireMediaLog('Audio')">
+            <label class="bg-slate-100 border text-center py-2 rounded-lg cursor-pointer hover:bg-slate-200 transition">
+              ??? Record Dispatch
+              <input type="file" accept="audio/*" capture="microphone" class="hidden" onchange="agentOps.uploadTelemetryMedia('Audio')">
             </label>
           </div>
         </div>
@@ -151,315 +156,137 @@
     </div>
 
     <!-- ================================================================= -->
-    <!-- VIEWPORT 3: CANDIDATE ADMIN WAR ROOM (4 CHARTS SUITE)             -->
+    <!-- VIEWPORT 3: TIER 1 EXECUTIVE COMMAND SUITE (4 CHARTS CORE)       -->
     <!-- ================================================================= -->
-    <div id="view-warroom" class="hidden space-y-6 bg-slate-950 text-slate-100 p-6 rounded-2xl border border-slate-900 shadow-xl">
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-4">
+    <div id="panel-warroom" class="view-panel bg-slate-950 text-slate-100 p-6 md:p-8 rounded-2xl border border-slate-900 shadow-xl space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-900 pb-6 gap-4">
         <div>
-          <h2 class="text-xl font-bold tracking-tight text-white" id="warroom-title">PulseKit Central War Room Matrix</h2>
-          <p class="text-xs text-slate-400">Real-Time Executive Performance Metrics Sheet</p>
+          <h2 id="warroom-headline-title" class="text-2xl font-black text-white tracking-tight">PulseKit Central Commander Operations</h2>
+          <p class="text-xs text-slate-400 mt-1">Four-Chart Dynamic Real-Time Executive Summary Suite Layer</p>
         </div>
-        
-        <!-- DAILY / WEEKLY LEDGER FILTERS CONTROLLER -->
-        <div class="flex bg-slate-900 p-1 rounded-lg border border-slate-800 text-xs">
-          <button id="btn-filter-daily" onclick="toggleReportWindow('daily')" class="bg-slate-800 text-white px-3 py-1 rounded font-medium shadow-sm">Daily Track</button>
-          <button id="btn-filter-weekly" onclick="toggleReportWindow('weekly')" class="text-slate-400 px-3 py-1 rounded font-medium hover:text-white">Weekly Aggregate</button>
+        <!-- Historical Ledger Filter Row Toggles -->
+        <div class="flex bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs">
+          <button id="filter-tab-daily" onclick="dashboard.shiftTimeline('daily')" class="bg-slate-800 text-white px-4 py-1.5 rounded-md font-medium transition shadow-sm">Daily Sheet</button>
+          <button id="filter-tab-weekly" onclick="dashboard.shiftTimeline('weekly')" class="text-slate-400 px-4 py-1.5 rounded-md font-medium hover:text-white transition">Weekly Aggregate</button>
         </div>
       </div>
 
-      <!-- THE FOUR EXECUTIVE CHARTS GRID SYSTEM -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <!-- THE FOUR EXECUTIVE METRICS ANALYTICS CHARTS GRID -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
-        <!-- CHART 1: INGESTION TREND VELOCITY TRACK -->
-        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 1: Voter Ingestion Timelines Velocity</h4>
-          <div class="h-28 flex items-end gap-2 pt-4 border-b border-l border-slate-800 px-2">
-            <div class="bg-blue-500/20 w-full h-[20%] rounded-t"></div>
-            <div class="bg-blue-500/40 w-full h-[45%] rounded-t"></div>
-            <div class="bg-blue-500/60 w-full h-[65%] rounded-t"></div>
-            <div id="live-trend-bar" class="bg-blue-500 w-full h-[78%] rounded-t transition-all duration-500"></div>
+        <!-- CHART 1: INGESTION VELOCITY TREND GRAPH -->
+        <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 tracking-wide">Chart 1: Voter Ingestion Velocity Chrono-Graph</h4>
+          <div class="h-28 flex items-end gap-2.5 pt-4 border-b border-l border-slate-800 px-2">
+            <div class="bg-blue-600/20 w-full h-[25%] rounded-t"></div>
+            <div class="bg-blue-600/40 w-full h-[48%] rounded-t"></div>
+            <div class="bg-blue-600/60 w-full h-[68%] rounded-t"></div>
+            <div id="chart-live-trend-bar" class="bg-blue-500 w-full h-[75%] rounded-t transition-all duration-700 shadow-[0_0_10px_rgba(59,130,246,0.3)]"></div>
           </div>
-          <div class="flex justify-between text-[9px] text-slate-500 font-mono"><span>MON</span><span>WED</span><span>FRI</span><span class="text-blue-400">LIVE RUN</span></div>
+          <div class="flex justify-between text-[9px] font-mono text-slate-500"><span>MON</span><span>WED</span><span>FRI</span><span class="text-blue-400">LIVE ENGINE</span></div>
         </div>
 
-        <!-- CHART 2: EXPENSES DISBURSEMENT SHARE BAR -->
-        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-4">
-          <div class="flex justify-between items-center">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 2: Cash Burn Ledger Outflow Weight</h4>
-            <span id="ledger-total-badge" class="text-xs font-bold text-emerald-400">Total Outflow: ?7,500</span>
+        <!-- CHART 2: PIE SHARE EXPENSE LEDGER STRUCTURE -->
+        <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-4">
+          <div class="flex justify-between items-center border-b border-slate-900 pb-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 2: Cash Burn Allocation Matrix Balance</h4>
+            <span id="summary-total-outflow-lbl" class="text-xs font-bold text-emerald-400 font-mono">Total Outflow: ?0</span>
           </div>
-          <div class="space-y-2 text-xs">
+          <div class="space-y-2.5 text-xs">
             <div>
-              <div class="flex justify-between text-slate-400 mb-1"><span>Vehicles & Fuel Logistics</span><span id="chart-log-pct">43%</span></div>
-              <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div id="chart-log-bar" class="bg-yellow-500 h-2 rounded-full" style="width: 43%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-slate-400 mb-1"><span>Team Food Provisions</span><span id="chart-food-pct">24%</span></div>
-              <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div id="chart-food-bar" class="bg-orange-500 h-2 rounded-full" style="width: 24%"></div></div>
+              <div class="flex justify-between text-slate-400 mb-1"><span>Fleet & Logistics Transit</span><span id="pie-log-lbl" class="font-mono">0%</span></div>
+              <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden"><div id="pie-log-bar" class="bg-yellow-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div></div>
             </div>
             <div>
-              <div class="flex justify-between text-slate-400 mb-1"><span>Campaign Print Collateral</span><span id="chart-camp-pct">33%</span></div>
-              <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden"><div id="chart-camp-bar" class="bg-blue-500 h-2 rounded-full" style="width: 33%"></div></div>
+              <div class="flex justify-between text-slate-400 mb-1"><span>Worker Provisions & Food</span><span id="pie-food-lbl" class="font-mono">0%</span></div>
+              <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden"><div id="pie-food-bar" class="bg-orange-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div></div>
             </div>
-          </div>
-        </div>
-
-        <!-- CHART 3: STRICT ACTIVE COLOR THRESHOLD HEATGRID HEATMAP -->
-        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-3 lg:col-span-2">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 3: Ward Progress Performance Grid Metrics</h4>
-            <div class="flex gap-4 text-[9px] text-slate-400 font-mono">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Green (60%+) On Track</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-yellow-500"></span> Amber (50%+) Lagging</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-500"></span> Red (&lt;50%) Alert Stalled</span>
+            <div>
+              <div class="flex justify-between text-slate-400 mb-1"><span>Campaign Print Materials</span><span id="pie-camp-lbl" class="font-mono">0%</span></div>
+              <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden"><div id="pie-camp-bar" class="bg-blue-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div></div>
             </div>
-          </div>
-          <div id="ward-heatmap-container" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 text-xs">
-            <!-- Loaded via app engine loops scripts -->
           </div>
         </div>
 
-        <!-- CHART 4: FIELD WORKERS AGENT LOG MATRIX TABLE -->
-        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-3 lg:col-span-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 4: 50-Agent Operations & Expense Registry</h4>
-          <div class="overflow-x-auto text-xs border border-slate-800 rounded-lg">
-            <table class="w-full text-left border-collapse">
+        <!-- CHART 3: CORE TARGET THRESHOLD HEATGRID -->
+        <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-4 lg:col-span-2">
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-900 pb-2 gap-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 3: Ward Capacity Boundary Performance Matrix Heatmap</h4>
+            <div class="flex gap-4 text-[9px] font-mono text-slate-400">
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.4)]"></span> Green (60%+) On Track</span>
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-500"></span> Amber (50%+) Lagging</span>
+              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Red (&lt;50%) Alert Stalled</span>
+            </div>
+          </div>
+          <div id="ward-heatmap-grid-dom" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 text-xs">
+            <!-- Programmatically injected inside the runtime loops -->
+          </div>
+        </div>
+
+        <!-- CHART 4: SYSTEM OPERATORS MATRIX REGISTRY REGISTER -->
+        <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-3 lg:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 4: 50-Agent Operations General Ledger Registry</h4>
+          <div class="overflow-x-auto text-xs border border-slate-800 rounded-xl">
+            <table class="w-full text-left border-collapse bg-slate-950/20">
               <thead>
-                <tr class="bg-slate-950 border-b border-slate-800 text-slate-400 font-bold">
+                <tr class="bg-slate-950 border-b border-slate-900 text-slate-400 font-bold">
                   <th class="p-3">Field Representative</th>
-                  <th class="p-3">Ward Jurisdiction</th>
-                  <th class="p-3">Voter Quota Target</th>
-                  <th class="p-3">Logistics Spent</th>
-                  <th class="p-3">Food Spent</th>
-                  <th class="p-3">Campaign Spent</th>
+                  <th class="p-3">Ward Scope</th>
+                  <th class="p-3">Voter Quota Metric</th>
+                  <th class="p-3">Logistics Cost</th>
+                  <th class="p-3">Food Voucher</th>
+                  <th class="p-3">Materials Cost</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-800/40 text-slate-300 font-medium">
-                <tr class="bg-slate-900/50">
+              <tbody class="divide-y divide-slate-900 text-slate-300 font-medium">
+                <tr id="row-agent-005" class="bg-slate-900/30">
                   <td class="p-3 text-white font-bold">Agent Tomba</td>
-                  <td class="p-3 text-blue-400">Ward 3</td>
-                  <td class="p-3"><span id="table-tomba-quota">310</span> / 500</td>
-                  <td class="p-3">?<span id="table-tomba-log">3,200</span></td>
-                  <td class="p-3">?<span id="table-tomba-food">1,800</span></td>
-                  <td class="p-3">?<span id="table-tomba-camp">2,500</span></td>
+                  <td class="p-3 text-blue-400 font-mono">Ward 3</td>
+                  <td class="p-3 font-mono">310 / 500</td>
+                  <td class="p-3 font-mono">?3,200</td>
+                  <td class="p-3 font-mono">?1,800</td>
+                  <td class="p-3 font-mono">?2,500</td>
                 </tr>
-                <tr class="bg-slate-900/10">
+                <tr id="row-agent-006">
                   <td class="p-3 text-white font-bold">Agent Chaoba</td>
-                  <td class="p-3 text-blue-400">Ward 1</td>
-                  <td class="p-3">410 / 500</td>
-                  <td class="p-3">?4,100</td>
-                  <td class="p-3">?2,900</td>
-                  <td class="p-3">?3,400</td>
+                  <td class="p-3 text-blue-400 font-mono">Ward 1</td>
+                  <td class="p-3 font-mono">410 / 500</td>
+                  <td class="p-3 font-mono">?4,100</td>
+                  <td class="p-3 font-mono">?2,900</td>
+                  <td class="p-3 font-mono">?3,400</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- TELEMETRY RUN TRACK DATA STREAM LISTS -->
-        <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2 lg:col-span-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">System Activity Diagnostic Telemetry Pipeline</h4>
-          <div id="telemetry-logs-box" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] font-mono text-slate-400 max-h-36 overflow-y-auto space-y-1">
-            <div>[05:41:51 AM] - System workspace engine profiles loaded mapping default core arrays successfully.</div>
+        <!-- DIAGNOSTIC TELEMETRY STREAMS -->
+        <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-2 lg:col-span-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Ground Telemetry Webhook Inbound Ingestion Pipeline Traces</h4>
+          <div id="telemetry-log-wrapper" class="bg-slate-950 p-4 rounded-xl border border-slate-900 font-mono text-[11px] text-slate-400 max-h-40 overflow-y-auto space-y-1.5">
+            <div>[05:41:51 AM] - SYSTEM INITIALIZATION: Master data schema constraints compiled successfully.</div>
           </div>
         </div>
 
       </div>
     </div>
-
   </main>
 
-  <!-- ================================================================= -->
-  <!-- DYNAMIC STICKY FLOATING FOOTER NAVIGATION LAYER                  -->
-  <!-- ================================================================= -->
-  <footer class="bg-white border-t border-[#E2E8F0] fixed bottom-0 left-0 right-0 z-50 shadow-lg">
+  <!-- ================= STICKY MOBILE FOOTER NAVIGATION BAR ================= -->
+  <footer class="bg-white border-t border-[#EBE7DF] fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
     <div class="max-w-md mx-auto flex justify-around text-slate-400 text-center">
-      <button id="nav-btn-citizen" onclick="changeViewport('citizen')" class="flex-1 py-3 text-xs font-medium transition active-view nav-active flex flex-col items-center gap-0.5">
-        <span class="text-base">??</span> Resident View
+      <button id="nav-btn-citizen" onclick="router.switchView('citizen')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5 active">
+        <span class="text-base">??</span> Resident Portal
       </button>
-      <button id="nav-btn-agent" onclick="changeViewport('agent')" class="flex-1 py-3 text-xs font-medium transition flex flex-col items-center gap-0.5">
+      <button id="nav-btn-agent" onclick="router.switchView('agent')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5">
         <span class="text-base">??</span> Agent Cockpit
       </button>
-      <button id="nav-btn-warroom" onclick="changeViewport('warroom')" class="flex-1 py-3 text-xs font-medium transition flex flex-col items-center gap-0.5">
+      <button id="nav-btn-warroom" onclick="router.switchView('warroom')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5">
         <span class="text-base">??</span> Executive Suite
       </button>
     </div>
   </footer>
 
-  <!-- ================= STATE MANAGEMENT CORE ENGINE SCRIPT ================= -->
-  <script>
-    let runtimeEngineState = {
-      thangmeiband: { label: "Thangmeiband AC", totalWards: 25 },
-      uripok: { label: "Uripok AC", totalWards: 20 },
-      activeAC: "thangmeiband",
-      voterMultiplier: 3,
-      agentTombaQuota: 310,
-      reportWindow: "daily",
-      finances: { logistics: 3200, food: 1800, campaign: 2500 },
-      wards: []
-    };
-
-    function switchAC(acName) {
-      runtimeEngineState.activeAC = acName;
-      document.getElementById('sub-title').innerText = `Active Target: ${runtimeEngineState.thangmeiband[acName] ? runtimeEngineState.thangmeiband[acName].label : runtimeEngineState.thangmeiband.activeAC === 'uripok' ? 'Uripok AC Core Engine' : 'Thangmeiband AC Core Engine'}`;
-      document.getElementById('warroom-title').innerText = `${runtimeEngineState[acName].label} Executive Command Matrix`;
-      
-      // Seed randomized performance density metrics matching threshold requirements
-      runtimeEngineState.wards = [];
-      for(let i = 1; i <= runtimeEngineState[acName].totalWards; i++) {
-        let quotaPct = (i === 3 && acName === 'thangmeiband') ? Math.round((runtimeEngineState.agentTombaQuota/500)*100) : Math.floor(Math.random() * (75 - 30 + 1)) + 30;
-        runtimeEngineState.wards.push({ number: i, score: quotaPct });
-      }
-      
-      renderHeatmapGrid();
-      pushTelemetryTrace(`Context engine routing parsed. Instanced structural properties dataset maps for [${runtimeEngineState[acName].label.toUpperCase()}].`);
-    }
-
-    function changeViewport(targetView) {
-      ['citizen', 'agent', 'warroom'].forEach(v => {
-        document.getElementById(`view-${v}`).classList.remove('active-view');
-        document.getElementById(`nav-btn-${v}`).classList.remove('nav-active');
-      });
-      document.getElementById(`view-${targetView}`).classList.add('active-view');
-      document.getElementById(`nav-btn-${targetView}`).classList.add('nav-active');
-    }
-
-    function simulateWhatsAppLink() {
-      const input = document.getElementById('citizen-phone').value.trim();
-      if(!input || input.length < 10) return alert('Enter correct voter phone target parameters.');
-      
-      document.getElementById('auth-success-badge').classList.remove('hidden');
-      document.getElementById('voter-action-wrapper').classList.remove('opacity-40', 'pointer-events-none');
-      pushTelemetryTrace(`Dispatched unique validation string handshake parameters to target device via WhatsApp loop.`);
-    }
-
-    function logConsensus(type, element) {
-      const increment = runtimeEngineState.voterMultiplier;
-      const display = document.getElementById(`${type}-count`);
-      display.innerText = parseInt(display.innerText) + increment;
-      
-      element.disabled = true;
-      element.innerText = "? ALIGNED";
-      element.className = "bg-green-700 text-white font-bold px-3 py-1.5 rounded-lg text-xs cursor-not-allowed";
-      
-      document.getElementById('live-trend-bar').style.height = "96%";
-      pushTelemetryTrace(`Consensus token logged on pipeline asset [${type.toUpperCase()}] scaling registry weight count +${increment}.`);
-    }
-
-    function registerHouseholdRelative() {
-      const val = document.getElementById('new-member-name').value.trim();
-      if(!val) return alert('Fill required relationship label fields.');
-      
-      runtimeEngineState.voterMultiplier++;
-      runtimeEngineState.agentTombaQuota++;
-      
-      document.getElementById('house-count-badge').innerText = `${runtimeEngineState.voterMultiplier} Voters Registered`;
-      document.getElementById('agent-quota-val').innerText = runtimeEngineState.agentTombaQuota;
-      document.getElementById('table-tomba-quota').innerText = runtimeEngineState.agentTombaQuota;
-      
-      const newPct = Math.round((runtimeEngineState.agentTombaQuota/500)*100);
-      document.getElementById('agent-quota-bar').style.width = `${newPct}%`;
-      
-      const container = document.getElementById('roster-list');
-      container.innerHTML += `<div class="bg-slate-50 p-2 rounded border flex justify-between"><span>? ${val}</span><span class="text-slate-400">Added Local</span></div>`;
-      
-      if(runtimeEngineState.activeAC === 'thangmeiband') runtimeEngineState.wards[2].score = newPct;
-      
-      renderHeatmapGrid();
-      pushTelemetryTrace(`Ingested structural sub-node link relative item: "${val}". Recalculated tracking registry densities.`);
-      document.getElementById('new-member-name').value = '';
-    }
-
-    function submitAgentExpense() {
-      const sector = document.getElementById('expense-type').value;
-      const cash = parseFloat(document.getElementById('expense-amount').value);
-      if(isNaN(cash) || cash <= 0) return alert('Enter validation voucher amount values.');
-      
-      runtimeEngineState.finances[sector] += cash;
-      
-      // Update cockpit UI states
-      document.getElementById('agent-log-cost').innerText = "?" + runtimeEngineState.finances.logistics.toLocaleString();
-      document.getElementById('agent-food-cost').innerText = "?" + runtimeEngineState.finances.food.toLocaleString();
-      document.getElementById('agent-camp-cost').innerText = "?" + runtimeEngineState.finances.campaign.toLocaleString();
-      
-      // Sync Admin tables views rows elements
-      document.getElementById('table-tomba-log').innerText = runtimeEngineState.finances.logistics.toLocaleString();
-      document.getElementById('table-tomba-food').innerText = runtimeEngineState.finances.food.toLocaleString();
-      document.getElementById('table-tomba-camp').innerText = runtimeEngineState.finances.campaign.toLocaleString();
-      
-      computeFinancialSummaryCharts();
-      pushTelemetryTrace(`Filed cash disbursement entry layer into General Ledger: Category [${sector.toUpperCase()}], value amount ?${cash}.`);
-      document.getElementById('expense-amount').value = '';
-    }
-
-    function computeFinancialSummaryCharts() {
-      const sum = runtimeEngineState.finances.logistics + runtimeEngineState.finances.food + runtimeEngineState.finances.campaign;
-      document.getElementById('master-total-spent').innerText = "?" + sum.toLocaleString();
-      document.getElementById('ledger-total-badge').innerText = `Total Outflow: ?${sum.toLocaleString()}`;
-      
-      const logP = Math.round((runtimeEngineState.finances.logistics / sum) * 100);
-      const foodP = Math.round((runtimeEngineState.finances.food / sum) * 100);
-      const campP = 100 - (logP + foodP);
-      
-      document.getElementById('chart-log-pct').innerText = logP + "%";
-      document.getElementById('chart-log-bar').style.width = logP + "%";
-      document.getElementById('chart-food-pct').innerText = foodP + "%";
-      document.getElementById('chart-food-bar').style.width = foodP + "%";
-      document.getElementById('chart-camp-pct').innerText = campP + "%";
-      document.getElementById('chart-camp-bar').style.width = campP + "%";
-    }
-
-    function toggleReportWindow(mode) {
-      ['daily', 'weekly'].forEach(m => document.getElementById(`btn-filter-${m}`).className = "text-slate-400 px-3 py-1 rounded font-medium hover:text-white");
-      document.getElementById(`btn-filter-${mode}`).className = "bg-slate-800 text-white px-3 py-1 rounded font-medium shadow-sm";
-      runtimeEngineState.reportWindow = mode;
-      pushTelemetryTrace(`Shifted analytics calculation window layer metrics filtering framework scope to: [${mode.toUpperCase()} WORKSPACE].`);
-    }
-
-    function renderHeatmapGrid() {
-      const panel = document.getElementById('ward-heatmap-container');
-      if(!panel) return;
-      panel.innerHTML = '';
-      
-      runtimeEngineState.wards.forEach(w => {
-        let markerBg = 'border-slate-800 bg-slate-900';
-        let statusTag = '?? ON TRACK';
-        
-        if (w.score >= 60) {
-          markerBg = 'border-emerald-800 bg-emerald-950/30 text-emerald-400';
-          statusTag = '?? ON TRACK';
-        } else if (w.score >= 50) {
-          markerBg = 'border-yellow-700 bg-yellow-950/20 text-yellow-500';
-          statusTag = '?? LAGGING';
-        } else {
-          markerBg = 'border-red-900 bg-red-950/40 text-red-400 animate-pulse';
-          statusTag = '?? ALERT';
-        }
-        
-        panel.innerHTML += `<div class="border p-3 rounded-xl flex flex-col justify-between gap-2 transition hover:border-slate-600 ${markerBg}">
-          <div class="text-slate-400 font-medium">Ward Section ${w.number}</div>
-          <div class="flex items-baseline justify-between"><span class="text-base font-black">${w.score}%</span><span class="text-[7px] font-bold tracking-wider opacity-80">${statusTag}</span></div>
-        </div>`;
-      });
-    }
-
-    function fireMediaLog(format) {
-      const commentText = document.getElementById('telemetry-msg').value.trim();
-      pushTelemetryTrace(`CRITICAL FIELD RADAR DISPATCH - Ward 3: Generated binary ${format} asset link. Content tag: "${commentText || 'Empty description context text'}".`);
-      alert(`[Hardware Storage Tunnel Success]: Compressed ${format} asset saved. Reference identifier mapped to central candidate monitor table.`);
-      document.getElementById('telemetry-msg').value = '';
-    }
-
-    function pushTelemetryTrace(info) {
-      const box = document.getElementById('telemetry-logs-box');
-      if(!box) return;
-      const t = new Date().toLocaleTimeString();
-      box.innerHTML = `<div class="py-0.5 border-b border-slate-900/30 animate-fadeIn">[${t}] - ${info}</div>` + box.innerHTML;
-    }
-
-    // Run Initial Matrix Seeds
-    switchAC('thangmeiband');
-    computeFinancialSummaryCharts();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
