@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PulseKit - Multi-Tenant Campaign Engine</title>
+  <title>PulseKit - Complete Campaign Command Suite</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .view-panel { display: none; }
@@ -14,276 +14,196 @@
 <body class="bg-[#FAF9F5] text-[#2C3E35] font-sans antialiased min-h-full pb-24">
 
   <!-- ================= MASTER SAAS NAVIGATION HEADER ================= -->
-  <header class="bg-[#2C3E35] text-[#F4F1EA] px-6 py-4 shadow-sm border-b border-[#3D5247] sticky top-0 z-50">
+  <header class="bg-[#2C3E35] text-[#F4F1EA] p-4 shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div>
         <h1 class="text-xl font-light tracking-wide">PULSE<span class="font-normal text-[#A3B899]">KIT</span></h1>
         <p id="current-ac-label" class="text-[11px] text-[#A3B899] uppercase tracking-wider mt-0.5">Loading Active Constituency Framework...</p>
       </div>
-      <!-- Multi-Tenant Router Switches -->
       <div class="flex gap-2 text-xs">
-        <button onclick="router.navigateAC('thangmeiband')" class="bg-[#4A6B56] hover:bg-[#5C836C] text-[#F4F1EA] px-4 py-2 rounded-lg transition shadow-sm">Thangmeiband AC (25 Wards)</button>
-        <button onclick="router.navigateAC('uripok')" class="bg-[#6B8E78] hover:bg-[#7D9F8A] text-[#F4F1EA] px-4 py-2 rounded-lg transition shadow-sm">Uripok AC (20 Wards)</button>
+        <button onclick="router.navigateAC('thangmeiband')" class="bg-[#4A6B56] hover:bg-[#5C836C] text-[#F4F1EA] px-3 py-1.5 rounded-lg transition shadow-sm">Thangmeiband AC</button>
+        <button onclick="router.navigateAC('uripok')" class="bg-[#6B8E78] hover:bg-[#7D9F8A] text-[#F4F1EA] px-3 py-1.5 rounded-lg transition shadow-sm">Uripok AC</button>
       </div>
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto p-4 md:p-8">
 
-    <!-- ================================================================= -->
-    <!-- VIEWPORT 1: TIER 3 CITIZEN MOBILE PWA FRAMEWORK                   -->
-    <!-- ================================================================= -->
+    <!-- ================= VIEWPORT 1: CITIZEN PWA ================= -->
     <div id="panel-citizen" class="view-panel active max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#EBE7DF] overflow-hidden">
       <div class="bg-[#2C3E35] px-6 py-4 flex justify-between items-center">
-        <h3 class="text-[#F4F1EA] font-medium tracking-tight text-sm">Voter Portal Gateway</h3>
-        <span id="auth-status-tag" class="bg-[#EAE6DF] text-[#2C3E35] text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full border border-[#D5D0C5]">LOCKED</span>
+        <h3 class="text-[#F4F1EA] font-medium text-sm">Voter Portal</h3>
+        <span id="auth-status-tag" class="bg-[#EAE6DF] text-[#2C3E35] text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full border border-[#D5D0C5]">LOCKED</span>
       </div>
-
       <div class="p-6 space-y-6">
         <div>
-          <h2 class="text-xl font-semibold tracking-tight text-[#2C3E35]">Welcome, Rajesh Kumar</h2>
-          <p class="text-xs text-slate-500 mt-1">Pass the automated handshake step to verify your profile against the constituency registry.</p>
+          <h2 class="text-xl font-semibold tracking-tight">Welcome, Rajesh Kumar</h2>
+          <p class="text-xs text-slate-500 mt-1">Authenticate through WhatsApp to verify household registry constraints.</p>
         </div>
-
-        <!-- WHATSAPP WEBHOOK DATA ROUTER GENERATOR -->
         <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl space-y-3">
-          <label class="block text-xs font-semibold uppercase tracking-wider text-[#5A6E63]">WhatsApp Mobile Identity Ingestion</label>
-          <div class="flex gap-2">
-            <input type="text" id="voter-phone-input" placeholder="Enter Mobile Number" class="w-full bg-white border border-[#D5D0C5] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-[#2C3E35]">
-            <button onclick="voterAuth.triggerMetaWebhook()" class="bg-[#2C3E35] hover:bg-[#3E5448] text-[#F4F1EA] text-xs px-4 rounded-xl font-medium transition shadow-sm whitespace-nowrap">Verify Mobile</button>
-          </div>
-          <div id="meta-webhook-alert" class="hidden text-[11px] bg-[#E4EFE9] text-[#2C3E35] p-3 rounded-xl border border-[#C5DCD0] leading-relaxed">
-            <strong>Inbound Verification Token Dispatched:</strong> Check your WhatsApp profile for the validation URL handshake key.
+          <input type="text" id="voter-phone-input" placeholder="Enter WhatsApp Number" class="w-full bg-white border border-[#D5D0C5] rounded-xl px-3 py-2 text-xs focus:outline-none">
+          <button onclick="voterAuth.triggerMetaWebhook()" class="w-full bg-[#2C3E35] text-[#F4F1EA] text-xs py-2 rounded-xl font-medium shadow-sm">Verify Identity</button>
+          <div id="meta-webhook-alert" class="hidden text-[11px] bg-[#E4EFE9] text-[#2C3E35] p-3 rounded-xl border border-[#C5DCD0]">
+            ? Verification Token Dispatched to WhatsApp Registry Channel.
           </div>
         </div>
-
-        <!-- DYNAMIC ALIGNED CARDS LAYER -->
         <div id="citizen-agenda-box" class="space-y-3 opacity-40 pointer-events-none transition-all duration-300">
-          <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl space-y-3">
-            <h4 class="font-medium text-sm flex items-center gap-2">?? Clean Water Pipeline Retrofit</h4>
-            <div class="flex justify-between items-center pt-2 border-t border-[#EBE7DF] text-xs">
-              <span class="text-slate-500">Active Weight: <span id="water-tally-val" class="font-bold text-[#2C3E35]">4821</span> Tokens</span>
-              <button onclick="voterAuth.submitConsensus('water', this)" class="bg-[#2C3E35] text-[#F4F1EA] hover:bg-[#3E5448] font-medium px-4 py-1.5 rounded-lg transition shadow-sm">[ I Agree ]</button>
-            </div>
+          <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl flex justify-between items-center text-xs">
+            <span>?? Clean Water Mainline Retrofit (<span id="water-tally-val" class="font-bold">4821</span>)</span>
+            <button onclick="voterAuth.submitConsensus('water', this)" class="bg-[#2C3E35] text-[#F4F1EA] px-3 py-1.5 rounded-lg font-medium">[ Agree ]</button>
           </div>
         </div>
-
-        <!-- HOUSEHOLD CLUSTER ARRAYS MULTIPLIER -->
-        <div class="bg-white border border-[#EBE7DF] p-4 rounded-xl space-y-4">
-          <div class="flex justify-between items-center border-b border-[#FAF9F5] pb-2">
-            <h4 class="font-semibold text-sm">Household Dependency Matrix</h4>
-            <span id="household-size-badge" class="bg-[#FAF9F5] border border-[#EBE7DF] text-[11px] font-bold px-2.5 py-0.5 rounded-md text-[#2C3E35]">3 Voters Tracked</span>
-          </div>
-          <div id="household-roster-dom" class="text-xs space-y-2 max-h-32 overflow-y-auto">
-            <div class="bg-[#FAF9F5] p-2.5 rounded-lg border border-[#FAF9F5] flex justify-between items-center"><span>? L. Ibomcha Singh (Father)</span><span class="text-slate-400 font-mono text-[11px]">Age 62</span></div>
-          </div>
-          <div class="pt-2 border-t border-[#FAF9F5] space-y-2">
-            <input type="text" id="relative-name-input" placeholder="Relative's Full Name" class="w-full bg-[#FAF9F5] border border-[#EBE7DF] rounded-lg px-3 py-2 text-xs focus:outline-none">
-            <button onclick="voterAuth.appendRelative()" class="w-full bg-[#2C3E35] hover:bg-[#3E5448] text-[#F4F1EA] py-2 rounded-lg text-xs font-medium transition shadow-sm">+ Append Relative Node</button>
-          </div>
+        <div class="bg-white border border-[#EBE7DF] p-4 rounded-xl space-y-3">
+          <div class="flex justify-between items-center"><h4 class="font-semibold text-sm">Household Members Array</h4><span id="household-size-badge" class="bg-[#FAF9F5] text-[11px] font-bold px-2 py-0.5 rounded border">3 Voters</span></div>
+          <div id="household-roster-dom" class="text-xs space-y-2"></div>
+          <input type="text" id="relative-name-input" placeholder="Relative's Full Name" class="w-full bg-[#FAF9F5] border rounded-lg px-3 py-2 text-xs focus:outline-none">
+          <button onclick="voterAuth.appendRelative()" class="w-full bg-[#2C3E35] text-[#F4F1EA] py-2 rounded-lg text-xs font-medium transition">+ Append Relative Node</button>
         </div>
       </div>
     </div>
 
-    <!-- ================================================================= -->
-    <!-- VIEWPORT 2: TIER 2 L2 FIELD AGENT OPERATIONS APP                  -->
-    <!-- ================================================================= -->
+    <!-- ================= VIEWPORT 2: TIER 2 FIELD AGENT OPERATIONS ================= -->
     <div id="panel-agent" class="view-panel max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#EBE7DF] overflow-hidden">
       <div class="bg-slate-900 px-6 py-4 text-white flex justify-between items-center">
-        <div>
-          <h2 id="agent-profile-title" class="text-base font-medium tracking-wide">Agent Cockpit</h2>
-          <p id="agent-ward-subtitle" class="text-xs text-slate-400 mt-0.5">Parsing Identifier Badge Parameters...</p>
-        </div>
-        <span class="bg-blue-950 text-blue-400 text-[10px] uppercase font-bold tracking-widest px-2.5 py-0.5 rounded-full border border-blue-900">L2 Auth</span>
+        <div><h2 id="agent-profile-title" class="text-base font-medium tracking-wide">Agent Cockpit</h2><p id="agent-ward-subtitle" class="text-xs text-slate-400 mt-0.5">Loading...</p></div>
+        <button onclick="agentOps.switchAgentIdentityMock()" class="bg-slate-800 text-slate-300 border border-slate-700 text-[10px] font-bold px-2.5 py-1 rounded-lg">Swap Agent ID</button>
       </div>
-
       <div class="p-6 space-y-6">
-        <!-- HARD QR INTERACTIVE SCANNER GATE MODULE -->
-        <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-3">
-          <label class="block text-xs font-bold uppercase tracking-wider text-slate-600">Hardware QR ID Authentication Scanner</label>
-          <button onclick="agentOps.triggerQRScannerMock()" class="w-full border-2 border-dashed border-slate-300 hover:border-slate-400 p-6 rounded-xl flex flex-col items-center justify-center gap-1.5 transition text-slate-500">
-            <span class="text-xl">??</span>
-            <span class="text-xs font-semibold">Scan Clipboard Badge Token</span>
-          </button>
-        </div>
-
-        <!-- 500-VOTER CAPACITATION TARGET PROGRESS -->
         <div class="bg-[#FAF9F5] border border-[#EBE7DF] p-4 rounded-xl space-y-2">
-          <div class="flex justify-between items-center text-xs font-medium">
-            <span class="text-slate-500">Agent Quota Footprint Target</span>
-            <span id="agent-quota-label" class="text-[#2C3E35] font-bold font-mono">0 / 500 Voters (0%)</span>
-          </div>
-          <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-            <div id="agent-quota-progress-fill" class="bg-[#2C3E35] h-2 rounded-full transition-all duration-700" style="width: 0%"></div>
-          </div>
+          <div class="flex justify-between items-center text-xs font-medium"><span class="text-slate-500">Agent Quota Target</span><span id="agent-quota-label" class="font-bold font-mono">0 / 500 (0%)</span></div>
+          <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden"><div id="agent-quota-progress-fill" class="bg-[#2C3E35] h-2 rounded-full" style="width: 0%"></div></div>
         </div>
-
-        <!-- ACCOUNTING CASH GENERAL LEDGER INPUT LAYER -->
         <div class="border border-[#EBE7DF] p-4 rounded-xl space-y-3">
-          <h4 class="font-bold text-sm text-[#2C3E35] flex items-center gap-1.5">Campaign Financial Voucher Entry</h4>
+          <h4 class="font-bold text-sm">Field Expense Voucher Entry</h4>
           <div class="text-xs space-y-2">
-            <div class="flex justify-between p-2.5 bg-[#FAF9F5] rounded-lg"><span>? Fleet Transport & Vehicle Fuel:</span><span id="ag-cost-logistics" class="font-bold text-slate-800">?0</span></div>
-            <div class="flex justify-between p-2.5 bg-[#FAF9F5] rounded-lg"><span>?? Ground Worker Provisions & Rations:</span><span id="ag-cost-food" class="font-bold text-slate-800">?0</span></div>
-            <div class="flex justify-between p-2.5 bg-[#FAF9F5] rounded-lg"><span>?? Campaign Print & Collateral Materials:</span><span id="ag-cost-campaign" class="font-bold text-slate-800">?0</span></div>
+            <div class="flex justify-between p-2 bg-[#FAF9F5] rounded-lg"><span>? Fuel & Logistics:</span><span id="ag-cost-logistics" class="font-bold">?0</span></div>
+            <div class="flex justify-between p-2 bg-[#FAF9F5] rounded-lg"><span>?? Rations & Food:</span><span id="ag-cost-food" class="font-bold">?0</span></div>
+            <div class="flex justify-between p-2 bg-[#FAF9F5] rounded-lg"><span>?? Campaign Print:</span><span id="ag-cost-campaign" class="font-bold">?0</span></div>
           </div>
-          <div class="pt-2 border-t border-[#FAF9F5] space-y-2">
-            <select id="agent-expense-category" class="w-full p-2 bg-white border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
-              <option value="logistics">Fleet Transport & Vehicle Fuel</option>
-              <option value="food">Ground Worker Provisions</option>
-              <option value="campaign">Campaign Print Collateral</option>
-            </select>
-            <input type="number" id="agent-expense-amount" placeholder="Enter Cost Voucher (?)" class="w-full p-2 border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
-            <button onclick="agentOps.fileExpenseVoucher()" class="w-full bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-black transition shadow-sm">File Cost Voucher</button>
-          </div>
-        </div>
-
-        <!-- INCIDENT MULTI-MEDIA UPLOAD GATE -->
-        <div class="border border-[#EBE7DF] p-4 rounded-xl space-y-3">
-          <h4 class="font-bold text-sm text-[#2C3E35]">Telemetry Field Incident Registry</h4>
-          <input type="text" id="agent-media-comment" placeholder="Describe emergency broken infrastructure..." class="w-full p-2 border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
-          <div class="grid grid-cols-2 gap-2 text-xs font-medium">
-            <label class="bg-slate-100 border text-center py-2 rounded-lg cursor-pointer hover:bg-slate-200 transition">
-              ?? Capture Image
-              <input type="file" accept="image/*" capture="environment" class="hidden" onchange="agentOps.uploadTelemetryMedia('Image')">
-            </label>
-            <label class="bg-slate-100 border text-center py-2 rounded-lg cursor-pointer hover:bg-slate-200 transition">
-              ??? Record Dispatch
-              <input type="file" accept="audio/*" capture="microphone" class="hidden" onchange="agentOps.uploadTelemetryMedia('Audio')">
-            </label>
+          <div class="pt-2 border-t space-y-2">
+            <select id="agent-expense-category" class="w-full p-2 bg-white border border-[#D5D0C5] rounded-lg text-xs"><option value="logistics">Fuel & Logistics</option><option value="food">Rations & Food</option><option value="campaign">Campaign Print</option></select>
+            <input type="number" id="agent-expense-amount" placeholder="Enter Amount (?)" class="w-full p-2 border border-[#D5D0C5] rounded-lg text-xs focus:outline-none">
+            <button onclick="agentOps.fileExpenseVoucher()" class="w-full bg-slate-900 text-white py-2 rounded-lg text-xs font-bold hover:bg-black transition">File Voucher</button>
           </div>
         </div>
       </div>
     </div>
 
     <!-- ================================================================= -->
-    <!-- VIEWPORT 3: TIER 1 EXECUTIVE COMMAND SUITE (4 CHARTS CORE)       -->
+    <!-- VIEWPORT 3: NEW TIER 2 CAMPAIGN PLANNER LOGISTICS SUITE          -->
     <!-- ================================================================= -->
+    <div id="panel-planner" class="view-panel max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-[#EBE7DF] overflow-hidden">
+      <div class="bg-[#3D5247] px-6 py-4 text-[#F4F1EA] flex justify-between items-center">
+        <div>
+          <h2 id="planner-profile-title" class="text-base font-medium tracking-wide">Logistics Planner Command</h2>
+          <p id="planner-subtitle" class="text-xs text-[#A3B899] mt-0.5">Active Planner ID: #001</p>
+        </div>
+        <button onclick="plannerOps.switchPlannerIdentityMock()" class="bg-[#2C3E35] text-[#A3B899] border border-[#4A6B56] text-[10px] font-bold px-2.5 py-1 rounded-lg">Swap Planner Profile</button>
+      </div>
+
+      <div class="p-6 space-y-6">
+        <!-- PLANNER TRACK EXPENSES OUTLAY FORM -->
+        <div class="border border-[#EBE7DF] p-4 rounded-xl space-y-4">
+          <h3 class="font-semibold text-sm text-[#2C3E35]">File Central Procurement Ledger Allocation</h3>
+          
+          <div class="space-y-3 text-xs">
+            <div>
+              <label class="block text-slate-500 font-medium mb-1">Select Procurement Segment Category</label>
+              <select id="planner-expense-category" class="w-full p-2.5 bg-white border border-[#D5D0C5] rounded-lg font-medium focus:ring-1 focus:ring-[#2C3E35]">
+                <option value="food">Food & Catering Provisions</option>
+                <option value="transport">Convoy Transit & Vehicle Transport</option>
+                <option value="stationery">Campaign Printing & Stationery</option>
+                <option value="fuel">Generator & Dedicated Bulk Fuel</option>
+                <option value="gathering">Rally Gatherings & Event Operations</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-slate-500 font-medium mb-1">Bill Outlay Amount (?)</label>
+              <input type="number" id="planner-expense-amount" placeholder="Enter exact bill total" class="w-full p-2.5 border border-[#D5D0C5] rounded-lg focus:outline-none focus:ring-1 focus:ring-[#2C3E35]">
+            </div>
+
+            <div>
+              <label class="block text-slate-500 font-medium mb-1">Procurement Notes / Itemized Details</label>
+              <input type="text" id="planner-expense-notes" placeholder="e.g., Purchased 200 crates mineral water/drinks for rally" class="w-full p-2.5 border border-[#D5D0C5] rounded-lg focus:outline-none">
+            </div>
+
+            <!-- NATIVE DIRECT CLICK CAMERA FILE INPUT -->
+            <div>
+              <label class="block text-slate-500 font-medium mb-1">Secure Receipt Audit Upload</label>
+              <label class="w-full border-2 border-dashed border-[#C5DCD0] hover:border-[#A3B899] bg-[#FAF9F5] p-4 rounded-xl flex flex-col items-center justify-center gap-1 cursor-pointer transition text-slate-500">
+                <span class="text-lg">??</span>
+                <span class="text-[11px] font-semibold text-[#2C3E35]">Click to Snap Live Receipt Photo</span>
+                <input type="file" id="planner-receipt-file" accept="image/*" capture="environment" class="hidden" onchange="plannerOps.handleReceiptSnapVisual()">
+              </label>
+              <p id="receipt-success-indicator" class="hidden text-[10px] text-emerald-700 font-bold mt-1.5 text-center">? Receipt Image Snapshot Buffered Successfully.</p>
+            </div>
+
+            <button onclick="plannerOps.fileCentralProcurement()" class="w-full bg-[#2C3E35] hover:bg-[#3E5448] text-[#F4F1EA] py-3 rounded-xl font-bold transition shadow-sm mt-2 text-center uppercase tracking-wider">File Procurement Voucher</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= VIEWPORT 4: EXECUTIVE COMMAND SUITE ================= -->
     <div id="panel-warroom" class="view-panel bg-slate-950 text-slate-100 p-6 md:p-8 rounded-2xl border border-slate-900 shadow-xl space-y-8">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-900 pb-6 gap-4">
         <div>
-          <h2 id="warroom-headline-title" class="text-2xl font-black text-white tracking-tight">PulseKit Central Commander Operations</h2>
-          <p class="text-xs text-slate-400 mt-1">Four-Chart Dynamic Real-Time Executive Summary Suite Layer</p>
+          <h2 id="warroom-headline-title" class="text-2xl font-black text-white tracking-tight">PulseKit Operations Dashboard</h2>
+          <p class="text-xs text-slate-400 mt-1">Multi-Tenant Real-Time Procurement & Operations Summary Suite</p>
         </div>
-        <!-- Historical Ledger Filter Row Toggles -->
         <div class="flex bg-slate-900 border border-slate-800 rounded-lg p-1 text-xs">
-          <button id="filter-tab-daily" onclick="dashboard.shiftTimeline('daily')" class="bg-slate-800 text-white px-4 py-1.5 rounded-md font-medium transition shadow-sm">Daily Sheet</button>
+          <button id="filter-tab-daily" onclick="dashboard.shiftTimeline('daily')" class="bg-slate-800 text-white px-4 py-1.5 rounded-md font-medium transition shadow-sm">Daily Track</button>
           <button id="filter-tab-weekly" onclick="dashboard.shiftTimeline('weekly')" class="text-slate-400 px-4 py-1.5 rounded-md font-medium hover:text-white transition">Weekly Aggregate</button>
         </div>
       </div>
 
-      <!-- THE FOUR EXECUTIVE METRICS ANALYTICS CHARTS GRID -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        <!-- CHART 1: INGESTION VELOCITY TREND GRAPH -->
+        <!-- CHART 1: INGESTION VELOCITY -->
         <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-3">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 tracking-wide">Chart 1: Voter Ingestion Velocity Chrono-Graph</h4>
-          <div class="h-28 flex items-end gap-2.5 pt-4 border-b border-l border-slate-800 px-2">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 1: Voter Ingestion Velocity Chrono-Graph</h4>
+          <div class="h-24 flex items-end gap-2.5 pt-4 border-b border-l border-slate-800 px-2">
             <div class="bg-blue-600/20 w-full h-[25%] rounded-t"></div>
             <div class="bg-blue-600/40 w-full h-[48%] rounded-t"></div>
-            <div class="bg-blue-600/60 w-full h-[68%] rounded-t"></div>
-            <div id="chart-live-trend-bar" class="bg-blue-500 w-full h-[75%] rounded-t transition-all duration-700 shadow-[0_0_10px_rgba(59,130,246,0.3)]"></div>
+            <div id="chart-live-trend-bar" class="bg-blue-500 w-full h-[65%] rounded-t shadow-[0_0_10px_rgba(59,130,246,0.3)]"></div>
           </div>
-          <div class="flex justify-between text-[9px] font-mono text-slate-500"><span>MON</span><span>WED</span><span>FRI</span><span class="text-blue-400">LIVE ENGINE</span></div>
         </div>
 
-        <!-- CHART 2: PIE SHARE EXPENSE LEDGER STRUCTURE -->
+        <!-- CHART 2: RECALCULATED EXPENSE ALLOCATION WEIGHTS (LINKED TO PLANNER & AGENTS) -->
         <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-4">
           <div class="flex justify-between items-center border-b border-slate-900 pb-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 2: Cash Burn Allocation Matrix Balance</h4>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 2: Cash Burn Share Architecture Balance</h4>
             <span id="summary-total-outflow-lbl" class="text-xs font-bold text-emerald-400 font-mono">Total Outflow: ?0</span>
           </div>
-          <div class="space-y-2.5 text-xs">
-            <div>
-              <div class="flex justify-between text-slate-400 mb-1"><span>Fleet & Logistics Transit</span><span id="pie-log-lbl" class="font-mono">0%</span></div>
-              <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden"><div id="pie-log-bar" class="bg-yellow-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-slate-400 mb-1"><span>Worker Provisions & Food</span><span id="pie-food-lbl" class="font-mono">0%</span></div>
-              <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden"><div id="pie-food-bar" class="bg-orange-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div></div>
-            </div>
-            <div>
-              <div class="flex justify-between text-slate-400 mb-1"><span>Campaign Print Materials</span><span id="pie-camp-lbl" class="font-mono">0%</span></div>
-              <div class="w-full bg-slate-950 h-2 rounded-full overflow-hidden"><div id="pie-camp-bar" class="bg-blue-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div></div>
-            </div>
+          <div id="chart-pie-wrapper-box" class="space-y-2 text-xs">
+            <!-- Dynamic Category allocation layout tracks populated via engine -->
           </div>
         </div>
 
-        <!-- CHART 3: CORE TARGET THRESHOLD HEATGRID -->
+        <!-- CHART 3: WARD HEATGRID MAP -->
         <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-4 lg:col-span-2">
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center border-b border-slate-900 pb-2 gap-2">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 3: Ward Capacity Boundary Performance Matrix Heatmap</h4>
-            <div class="flex gap-4 text-[9px] font-mono text-slate-400">
-              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.4)]"></span> Green (60%+) On Track</span>
-              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-yellow-500"></span> Amber (50%+) Lagging</span>
-              <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Red (&lt;50%) Alert Stalled</span>
-            </div>
-          </div>
-          <div id="ward-heatmap-grid-dom" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 text-xs">
-            <!-- Programmatically injected inside the runtime loops -->
-          </div>
+          <div class="flex justify-between items-center border-b border-slate-900 pb-2"><h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 3: Ward Capacity Bound Heatmap Grid</h4></div>
+          <div id="ward-heatmap-grid-dom" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3 text-xs"></div>
         </div>
 
-        <!-- CHART 4: SYSTEM OPERATORS MATRIX REGISTRY REGISTER -->
-        <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-3 lg:col-span-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Chart 4: 50-Agent Operations General Ledger Registry</h4>
-          <div class="overflow-x-auto text-xs border border-slate-800 rounded-xl">
-            <table class="w-full text-left border-collapse bg-slate-950/20">
-              <thead>
-                <tr class="bg-slate-950 border-b border-slate-900 text-slate-400 font-bold">
-                  <th class="p-3">Field Representative</th>
-                  <th class="p-3">Ward Scope</th>
-                  <th class="p-3">Voter Quota Metric</th>
-                  <th class="p-3">Logistics Cost</th>
-                  <th class="p-3">Food Voucher</th>
-                  <th class="p-3">Materials Cost</th>
-                </tr>
-              </thead>
-              <tbody class="divide-y divide-slate-900 text-slate-300 font-medium">
-                <tr id="row-agent-005" class="bg-slate-900/30">
-                  <td class="p-3 text-white font-bold">Agent Tomba</td>
-                  <td class="p-3 text-blue-400 font-mono">Ward 3</td>
-                  <td class="p-3 font-mono">310 / 500</td>
-                  <td class="p-3 font-mono">?3,200</td>
-                  <td class="p-3 font-mono">?1,800</td>
-                  <td class="p-3 font-mono">?2,500</td>
-                </tr>
-                <tr id="row-agent-006">
-                  <td class="p-3 text-white font-bold">Agent Chaoba</td>
-                  <td class="p-3 text-blue-400 font-mono">Ward 1</td>
-                  <td class="p-3 font-mono">410 / 500</td>
-                  <td class="p-3 font-mono">?4,100</td>
-                  <td class="p-3 font-mono">?2,900</td>
-                  <td class="p-3 font-mono">?3,400</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- DIAGNOSTIC TELEMETRY STREAMS -->
+        <!-- TELEMETRY RUN TRACK REALTIME DIAGNOSTICS STREAM -->
         <div class="bg-slate-900/40 border border-slate-900 p-5 rounded-xl space-y-2 lg:col-span-2">
-          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Ground Telemetry Webhook Inbound Ingestion Pipeline Traces</h4>
-          <div id="telemetry-log-wrapper" class="bg-slate-950 p-4 rounded-xl border border-slate-900 font-mono text-[11px] text-slate-400 max-h-40 overflow-y-auto space-y-1.5">
-            <div>[05:41:51 AM] - SYSTEM INITIALIZATION: Master data schema constraints compiled successfully.</div>
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Inbound Operations Telemetry Webhook Ingestion Pipeline</h4>
+          <div id="telemetry-log-wrapper" class="bg-slate-950 p-4 rounded-xl border border-slate-900 font-mono text-[11px] text-slate-400 max-h-44 overflow-y-auto space-y-1.5">
+            <div>[09:42:15 AM] - SYSTEM SERVICE CORE: Initialized Multi-User General Ledger Matrix configurations successfully.</div>
           </div>
         </div>
-
       </div>
     </div>
   </main>
 
-  <!-- ================= STICKY MOBILE FOOTER NAVIGATION BAR ================= -->
+  <!-- ================= STICKY FOOTER BAR NAVIGATION MODULE ================= -->
   <footer class="bg-white border-t border-[#EBE7DF] fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_12px_rgba(0,0,0,0.03)]">
     <div class="max-w-md mx-auto flex justify-around text-slate-400 text-center">
-      <button id="nav-btn-citizen" onclick="router.switchView('citizen')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5 active">
-        <span class="text-base">??</span> Resident Portal
-      </button>
-      <button id="nav-btn-agent" onclick="router.switchView('agent')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5">
-        <span class="text-base">??</span> Agent Cockpit
-      </button>
-      <button id="nav-btn-warroom" onclick="router.switchView('warroom')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5">
-        <span class="text-base">??</span> Executive Suite
-      </button>
+      <button id="nav-btn-citizen" onclick="router.switchView('citizen')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5 active"><span>??</span> Resident View</button>
+      <button id="nav-btn-agent" onclick="router.switchView('agent')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5"><span>??</span> Agent Cockpit</button>
+      <button id="nav-btn-planner" onclick="router.switchView('planner')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5"><span>??</span> Logistics Planner</button>
+      <button id="nav-btn-warroom" onclick="router.switchView('warroom')" class="nav-btn flex-1 py-3 text-[11px] font-medium tracking-tight transition flex flex-col items-center gap-0.5"><span>??</span> Executive Suite</button>
     </div>
   </footer>
 
